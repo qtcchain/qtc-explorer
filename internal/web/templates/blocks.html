@@ -2,7 +2,7 @@
 <h1>Blocks</h1>
 <div class="card">
 <table>
-  <thead><tr><th>Height</th><th>Time (UTC)</th><th>Txs</th><th>Size</th><th>Weight</th><th>Interval</th><th>Difficulty</th><th>Reward</th><th>Hash</th></tr></thead>
+  <thead><tr><th>Height</th><th>Time (UTC)</th><th>Txs</th><th>Size</th><th>Weight</th><th>Interval</th><th>Difficulty</th><th>Reward</th><th>Miner</th><th>Hash</th></tr></thead>
   <tbody>
   {{range .Data.Blocks}}
   <tr>
@@ -14,6 +14,7 @@
     <td>{{.Interval}} s</td>
     <td>{{diff .Difficulty}}</td>
     <td>{{qtc .CoinbaseValue}}{{if .Penalised}} <span class="badge warn">penalty</span>{{end}}</td>
+    <td class="mono">{{if .Miner}}<a href="/address/{{.Miner}}" title="{{.Miner}}">{{short .Miner}}</a>{{else}}—{{end}}</td>
     <td class="mono"><a href="/block/{{.Hash}}">{{short .Hash}}</a></td>
   </tr>
   {{end}}

@@ -22,7 +22,7 @@
 <section class="card">
   <h2>Latest blocks <a class="more" href="/blocks">all →</a></h2>
   <table>
-    <thead><tr><th>Height</th><th>Age</th><th>Txs</th><th>Size</th><th>Interval</th><th>Reward</th><th>Hash</th></tr></thead>
+    <thead><tr><th>Height</th><th>Age</th><th>Txs</th><th>Size</th><th>Interval</th><th>Reward</th><th>Miner</th><th>Hash</th></tr></thead>
     <tbody>
     {{range $d.Blocks}}
     <tr>
@@ -32,6 +32,7 @@
       <td>{{int .Size}} B</td>
       <td>{{.Interval}} s</td>
       <td>{{qtc .CoinbaseValue}}{{if .Penalised}} <span class="badge warn">penalty</span>{{end}}</td>
+      <td class="mono">{{if .Miner}}<a href="/address/{{.Miner}}" title="{{.Miner}}">{{short .Miner}}</a>{{else}}—{{end}}</td>
       <td class="mono"><a href="/block/{{.Hash}}">{{short .Hash}}</a></td>
     </tr>
     {{end}}

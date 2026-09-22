@@ -290,6 +290,12 @@ func (ix *Indexer) applyBlock(b *rpc.Block, st *store.State) error {
 		blk.Txids = append(blk.Txids, tx.Txid)
 		if tx.Coinbase {
 			blk.CoinbaseValue = tx.OutputValue
+			var best int64 = -1
+			for _, o := range tx.Vout {
+				if o.Address != "" && o.Value > best {
+					best, blk.Miner = o.Value, o.Address
+				}
+			}
 		} else {
 			blk.FeesTotal += tx.Fee
 		}

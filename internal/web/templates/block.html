@@ -14,6 +14,7 @@
     <dt>Size / weight</dt><dd>{{int $b.Size}} B / {{int $b.Weight}} WU (max 24,000,000)</dd>
     <dt>Base subsidy</dt><dd>{{qtc $b.SubsidyBase}}</dd>
     <dt>Coinbase value</dt><dd>{{qtc $b.CoinbaseValue}}</dd>
+    <dt>Miner</dt><dd class="mono">{{if $b.Miner}}<a href="/address/{{$b.Miner}}">{{$b.Miner}}</a>{{else}}—{{end}}</dd>
     <dt>Fees</dt><dd>{{qtc $b.FeesTotal}}</dd>
     <dt>Subsidy claimed</dt><dd>{{qtc $b.SubsidyActual}}{{if $b.Penalised}} <span class="badge warn">below base subsidy (empty-block penalty or under-claim)</span>{{end}}</dd>
     <dt>Previous</dt><dd class="mono">{{if $b.Prev}}<a href="/block/{{$b.Prev}}">{{$b.Prev}}</a>{{else}}genesis{{end}}</dd>

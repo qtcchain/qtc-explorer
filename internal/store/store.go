@@ -59,6 +59,7 @@ type Block struct {
 	Txids         []string `json:"txids"`
 	SubsidyBase   int64    `json:"subsidy_base"`   // atoms, from halving schedule
 	CoinbaseValue int64    `json:"coinbase_value"` // atoms
+	Miner         string   `json:"miner"`          // address of the largest coinbase output
 	FeesTotal     int64    `json:"fees_total"`     // atoms, sum of tx fees
 	Orphaned      bool     `json:"orphaned"`
 }
