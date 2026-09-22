@@ -26,7 +26,7 @@ dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0}dt{c
 dl.inline{display:flex;gap:8px 24px;flex-wrap:wrap;margin-bottom:12px}
 dl details{grid-column:1/-1;display:contents}dl details summary{grid-column:1/-1;cursor:pointer;color:var(--muted)}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-weight:600}
-.card table{display:block;overflow-x:auto}
+.card{overflow-x:auto}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
 .hash{overflow-wrap:anywhere;margin:0 0 16px}
 .wrap-any{overflow-wrap:anywhere;white-space:normal}.small{font-size:11px;max-height:200px;overflow:auto}
