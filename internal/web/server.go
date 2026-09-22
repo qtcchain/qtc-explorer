@@ -18,11 +18,11 @@ import (
 	"sync"
 	"time"
 
-	"qtc-explorer/internal/gateway"
-	"qtc-explorer/internal/indexer"
-	"qtc-explorer/internal/pq"
-	"qtc-explorer/internal/rpc"
-	"qtc-explorer/internal/store"
+	"github.com/qtcchain/qtc-explorer/internal/gateway"
+	"github.com/qtcchain/qtc-explorer/internal/indexer"
+	"github.com/qtcchain/qtc-explorer/internal/pq"
+	"github.com/qtcchain/qtc-explorer/internal/rpc"
+	"github.com/qtcchain/qtc-explorer/internal/store"
 )
 
 //go:embed templates/*.html

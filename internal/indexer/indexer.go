@@ -11,8 +11,8 @@ import (
 	"sync"
 	"time"
 
-	"qtc-explorer/internal/rpc"
-	"qtc-explorer/internal/store"
+	"github.com/qtcchain/qtc-explorer/internal/rpc"
+	"github.com/qtcchain/qtc-explorer/internal/store"
 )
 
 // Params are the consensus values needed to compute the base subsidy.

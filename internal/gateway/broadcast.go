@@ -16,7 +16,7 @@ import (
 	"sync"
 	"time"
 
-	"qtc-explorer/internal/rpc"
+	"github.com/qtcchain/qtc-explorer/internal/rpc"
 )
 
 const (
