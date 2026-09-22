@@ -201,6 +201,16 @@ func (s *Server) viewTx(tx *store.Tx) *txView {
 			v.Inputs = append(v.Inputs, inputView{Index: i, Decoded: pq.Decode(in.Witness)})
 		}
 	}
+	// Spend links live on the UTXO records, which are updated when the spending
+	// transaction is indexed; resolve them at render time so the tx record
+	// itself never needs rewriting.
+	if !v.Unconfirmed {
+		for i := range tx.Vout {
+			if u, err := s.st.GetUTXO(tx.Txid, tx.Vout[i].N); err == nil && u.Spent {
+				tx.Vout[i].SpentBy = u.SpentBy
+			}
+		}
+	}
 	if !tx.Coinbase && tx.Locktime > 0 && tx.Locktime < 500_000_000 && tx.Height > 0 && tx.Height-tx.Locktime <= 100 && tx.Locktime <= tx.Height {
 		v.AntiFeeSnipe = true
 	}
