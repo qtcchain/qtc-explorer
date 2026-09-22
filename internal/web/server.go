@@ -231,6 +231,11 @@ func (s *Server) lookupTx(ctx context.Context, txid string) (*store.Tx, error) {
 			if u, err := s.st.GetUTXO(in.Txid, in.Vout); err == nil {
 				ti.Value, ti.Address, ti.Script = u.Value, u.Address, u.Script
 				tx.InputValue += u.Value
+			} else if parent, err := s.rpc.GetRawTransaction(ctx, in.Txid); err == nil && int(in.Vout) < len(parent.Vout) {
+				// Parent is itself unconfirmed: read the spent output from the node.
+				o := parent.Vout[in.Vout]
+				ti.Value, ti.Address, ti.Script = rpc.Atoms(o.Value), o.ScriptPubKey.Address, o.ScriptPubKey.Hex
+				tx.InputValue += ti.Value
 			}
 		}
 		tx.Vin = append(tx.Vin, ti)
