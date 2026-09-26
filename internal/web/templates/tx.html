@@ -30,6 +30,9 @@
       <span class="mono"><a href="/tx/{{$in.Txid}}">{{short $in.Txid}}</a>:{{$in.Vout}}</span>
       {{if $in.Address}}<br><a class="mono" href="/address/{{$in.Address}}">{{$in.Address}}</a>{{end}}
       <br><strong>{{qtc $in.Value}}</strong>
+      {{if isAnchor $in.Script}}
+        <div class="pq"><span class="badge warn">anchor spend</span> spends a pay-to-anchor output: anyone can spend it, no signature or witness is required</div>
+      {{end}}
       {{with index $dec $i}}{{if .IsP2MR}}
         <div class="pq">
           <span class="badge pq">P2MR</span>
@@ -54,6 +57,7 @@
     <li>
       {{if .Address}}<a class="mono" href="/address/{{.Address}}">{{.Address}}</a>{{else}}<span class="mono wrap-any">{{.Asm}}</span>{{end}}
       <br><strong>{{qtc .Value}}</strong> <span class="badge">{{typeName .Type}}</span>
+      {{if eq .Type "anchor"}}<span class="badge warn">anyone can spend</span>{{end}}
       {{if lt .Value 11583}}{{if gt .Value 0}}<span class="badge warn">dust</span>{{end}}{{end}}
       {{if .SpentBy}}· spent by <a class="mono" href="/tx/{{.SpentBy}}">{{short .SpentBy}}</a>{{end}}
       {{if .NoteCommitment}}<br>note commitment <span class="mono">{{short .NoteCommitment}}</span>{{end}}

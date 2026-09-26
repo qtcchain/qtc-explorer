@@ -6,7 +6,7 @@
 <div class="card">
   <h2>Summary</h2>
   <dl>
-    <dt>Type</dt><dd>{{typeName $a.Type}}{{if eq $a.Type "witness_v2_p2mr"}} · witness v2 · Bech32m{{end}}</dd>
+    <dt>Type</dt><dd>{{typeName $a.Type}}{{if eq $a.Type "witness_v2_p2mr"}} · witness v2 · Bech32m{{end}}{{if eq $a.Type "anchor"}} · <span class="badge warn">anyone can spend</span> pay-to-anchor, no key behind it{{end}}</dd>
     <dt>Balance</dt><dd><strong>{{qtc $a.Balance}}</strong></dd>
     <dt>Received</dt><dd>{{qtc $a.Received}}</dd>
     <dt>Sent</dt><dd>{{qtc $a.Sent}}</dd>

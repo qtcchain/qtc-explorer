@@ -604,6 +604,7 @@ func (s *Server) loadTemplates() {
 		"sub":      func(a, b int64) int64 { return a - b },
 		"add":      func(a, b int64) int64 { return a + b },
 		"typeName": typeName,
+		"isAnchor": func(script string) bool { return strings.EqualFold(script, anchorScript) },
 		"json":     func(v any) string { b, _ := json.MarshalIndent(v, "", " "); return string(b) },
 		"seq": func(n int) []int {
 			r := make([]int, n)
@@ -688,6 +689,9 @@ func ago(t int64) string {
 		return fmt.Sprintf("%dd ago", int(d.Hours()/24))
 	}
 }
+
+// anchorScript is the pay-to-anchor output script: OP_1 <0x4e73>.
+const anchorScript = "51024e73"
 
 func typeName(t string) string {
 	switch t {
