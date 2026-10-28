@@ -60,6 +60,7 @@ func New(st *store.Store, c *rpc.Client, ix *indexer.Indexer, gw *gateway.Gatewa
 	s.loadTemplates()
 	sub, _ := fs.Sub(staticFS, "static")
 	s.mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.FS(sub))))
+	s.mux.Handle("GET /favicon.ico", http.RedirectHandler("/static/favicon.ico", http.StatusMovedPermanently))
 
 	// JSON API
 	s.mux.HandleFunc("GET /api/v1/chain", s.apiChain)

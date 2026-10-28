@@ -1,39 +1,83 @@
+{{define "mark"}}<svg class="original-qtc-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M20 2 37 12v17L20 39 3 29V12Z M3 12l17 10 17-10M20 22v17M20 2v20M3 29l17-7 17 7M12 7v17l17 10"/></svg>{{end}}
+{{define "arrow"}}<svg class="qtc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg>{{end}}
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{.Title}} · QTC {{.Chain}} explorer</title>
-<link rel="stylesheet" href="/static/style.css">
+<meta name="description" content="QTC block explorer: blocks, transactions, addresses, mempool and difficulty health on the QTC {{.Chain}} network.">
+<meta name="theme-color" content="#090d10">
+<link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+<link rel="preload" href="/static/fonts/dm-sans-400-700-latin.468d56b6b2.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/fonts/ibm-plex-mono-400-latin.c36f509c0a.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/style.css?v=20261028">
+<script defer src="/static/explorer.js?v=20261028"></script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <header>
   <div class="wrap bar">
-    <a class="brand" href="/">QTC<span class="net net-{{.Chain}}">{{.Chain}}</span></a>
-    <nav>
+    <a class="logo" href="/" aria-label="QTC explorer home">{{template "mark"}}<span class="qtc-wordmark">QTC<small>EXPLORER</small></span></a>
+    <span class="net net-{{.Chain}}">{{if eq .Chain "main"}}Mainnet{{else}}{{.Chain}}net{{end}}</span>
+    <button class="menu" type="button" aria-label="Open navigation" aria-expanded="false">MENU +</button>
+    <nav aria-label="Explorer navigation">
       <a href="/blocks">Blocks</a>
       <a href="/mempool">Mempool</a>
       <a href="/difficulty">Difficulty</a>
       <a href="/api">API</a>
       <a href="/status">Status</a>
-      <a href="https://qtc.markets/" class="ext" title="Pricing methodology and validation framework">Markets</a>
-      <a href="https://qtc.dev/" class="ext" title="QTC project site: downloads, node, mining, wallet, docs">qtc.dev</a>
+      <a href="https://qtc.markets/" class="ext" title="Pricing methodology and validation framework">Markets{{template "arrow"}}</a>
+      <a href="https://qtc.dev/" class="ext" title="QTC project site: downloads, node, mining, wallet, docs">qtc.dev{{template "arrow"}}</a>
     </nav>
-    <form class="search" action="/search" method="get">
-      <input type="search" name="q" placeholder="height, block hash, digest, txid, address, or prefix" value="{{.Query}}" required>
-      <button type="submit">Search</button>
+    <form class="search" role="search" action="/search" method="get">
+      <input type="search" name="q" placeholder="Height, block hash, digest, txid, address or prefix" value="{{.Query}}" required aria-label="Search the chain">
+      <button type="submit" aria-label="Search">{{template "arrow"}}</button>
     </form>
   </div>
 </header>
 {{if ne .Chain "main"}}<div class="banner">This is the <strong>{{.Chain}}</strong> network. Coins here have no value.</div>{{end}}
 {{if .Status.Halted}}<div class="banner warn">Indexer halted: {{.Status.LastError}}</div>{{else if gt .Status.Lag 3}}<div class="banner warn">Indexer is {{.Status.Lag}} blocks behind the node.</div>{{end}}
-<main class="wrap">
+<main class="wrap" id="main-content">
 {{template "content" .}}
 </main>
-<footer class="wrap">
-  <span>Indexed height {{.Status.IndexedHeight}} · node {{.Status.NodeHeight}} · {{.Status.Docs}} documents in Bleve</span>
-  <span>Amounts in QTC; 1 QTC = 100,000,000 atoms. No witness discount: 1 vB = 1 byte.</span>
-  <span><a href="https://qtc.dev/">qtc.dev</a> project site · <a href="https://qtc.markets/">qtc.markets</a> pricing methodology · <a href="https://keys.qtc.gold/">keys.qtc.gold</a> release-signing keys</span>
+<footer>
+  <div class="footer-top">
+    <div>
+      <a class="logo" href="/" aria-label="QTC explorer home">{{template "mark"}}<span class="qtc-wordmark">QTC<small>EXPLORER</small></span></a>
+      <p>Post-quantum proof-of-work money.<br>Secured by matrix multiplication.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="/blocks">Blocks</a>
+      <a href="/mempool">Mempool</a>
+      <a href="/difficulty">Difficulty</a>
+      <a href="/status">Indexer status</a>
+      <a href="/api">JSON API</a>
+    </div>
+    <div>
+      <h4>Network</h4>
+      {{if eq .Chain "main"}}<a href="https://testnet.qtc.events/">Testnet explorer{{template "arrow"}}</a>{{else}}<a href="https://qtc.events/">Mainnet explorer{{template "arrow"}}</a>{{end}}
+      <a href="https://qtc.dev/">qtc.dev project site{{template "arrow"}}</a>
+      <a href="https://qtc.markets/">Pricing methodology{{template "arrow"}}</a>
+      <a href="https://keys.qtc.gold/">Release-signing keys{{template "arrow"}}</a>
+    </div>
+    <div>
+      <h4>Project</h4>
+      <a href="https://qtc.dev/downloads/">Downloads</a>
+      <a href="https://qtc.dev/run-a-node/">Run a node</a>
+      <a href="https://qtc.dev/security/">Security policy</a>
+      <a href="https://github.com/qtcchain/qtc">GitHub{{template "arrow"}}</a>
+      <a href="https://t.me/qtcchain">Telegram{{template "arrow"}}</a>
+    </div>
+  </div>
+  <div class="legal">
+    <span>Indexed height {{.Status.IndexedHeight}} · node {{.Status.NodeHeight}} · {{.Status.Docs}} documents in Bleve</span>
+    <span>Amounts in QTC; 1 QTC = 100,000,000 atoms. No witness discount: 1 vB = 1 byte.</span>
+  </div>
 </footer>
 </body>
 </html>
