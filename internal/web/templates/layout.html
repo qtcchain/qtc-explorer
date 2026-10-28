@@ -22,7 +22,7 @@
 <header>
   <div class="wrap bar">
     <a class="logo" href="/" aria-label="QTC explorer home">{{template "mark"}}<span class="qtc-wordmark">QTC<small>EXPLORER</small></span></a>
-    <a class="net net-{{.Chain}}" href="https://qtc.dev/" title="Back to the QTC home page">{{if eq .Chain "main"}}Mainnet{{else}}{{.Chain}}net{{end}}</a>
+    <a class="net net-{{.Chain}}" href="/" title="Explorer home">{{if eq .Chain "main"}}Mainnet{{else}}{{.Chain}}net{{end}}</a>
     <button class="menu" type="button" aria-label="Open navigation" aria-expanded="false">MENU +</button>
     <nav aria-label="Explorer navigation">
       <a href="/blocks">Blocks</a>
