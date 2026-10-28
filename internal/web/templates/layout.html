@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
 <link rel="preload" href="/static/fonts/dm-sans-400-700-latin.468d56b6b2.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/static/fonts/ibm-plex-mono-400-latin.c36f509c0a.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/style.css?v=20261028">
+<link rel="stylesheet" href="/static/style.css?v=20261028b">
 <script defer src="/static/explorer.js?v=20261028"></script>
 </head>
 <body>
@@ -22,7 +22,7 @@
 <header>
   <div class="wrap bar">
     <a class="logo" href="/" aria-label="QTC explorer home">{{template "mark"}}<span class="qtc-wordmark">QTC<small>EXPLORER</small></span></a>
-    <span class="net net-{{.Chain}}">{{if eq .Chain "main"}}Mainnet{{else}}{{.Chain}}net{{end}}</span>
+    <a class="net net-{{.Chain}}" href="https://qtc.dev/" title="Back to the QTC home page">{{if eq .Chain "main"}}Mainnet{{else}}{{.Chain}}net{{end}}</a>
     <button class="menu" type="button" aria-label="Open navigation" aria-expanded="false">MENU +</button>
     <nav aria-label="Explorer navigation">
       <a href="/blocks">Blocks</a>

@@ -30,6 +30,8 @@ header{position:sticky;top:0;z-index:20;background:#090d10d9;backdrop-filter:blu
 .qtc-wordmark small{font:7px var(--mono);letter-spacing:2px;margin-top:7px;color:#9eb9bd}
 .net{font:500 9px/1 var(--mono);letter-spacing:1.6px;text-transform:uppercase;padding:6px 8px;border:1px solid #85f3df50;color:var(--green);white-space:nowrap}
 .net-test{border-color:#e0a24a70;color:var(--amber)}
+a.net{display:inline-block;transition:border-color .2s,background .2s}
+a.net:hover{border-color:currentColor;background:#ffffff0a}
 nav{display:flex;gap:22px;align-items:center;flex-wrap:wrap;order:2}
 nav a{font:11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:1.6px;white-space:nowrap}
 nav a:hover,nav a[aria-current="page"]{color:var(--green)}
