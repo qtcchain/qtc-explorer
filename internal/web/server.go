@@ -742,6 +742,9 @@ func intervalChart(bs []*store.Block, target int64) template.HTML {
 	for i, b := range bs {
 		iv := b.Interval
 		cls := "bar"
+		if iv > target {
+			cls = "bar over"
+		}
 		if iv > maxv {
 			iv, cls = maxv, "bar clamped"
 		}

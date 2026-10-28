@@ -24,6 +24,6 @@
 {{with index . "network"}}<dl><dt>Peers</dt><dd>{{index . "connected_peers"}} connected, {{index . "outbound_peers"}} outbound, {{index . "synced_outbound_peers"}} synced</dd></dl>{{end}}{{end}}
 </div>
 </div>
-<div class="card"><h2>Block intervals (last {{len $d.Recent}})</h2>{{chart $d.Recent $d.Target}}</div>
+<div class="card"><h2>Block intervals (last {{len $d.Recent}})</h2>{{chart $d.Recent $d.Target}}<p class="chart-legend"><span><i class="ok"></i>within {{$d.Target}} s target</span><span><i class="over"></i>slower than target</span><span><i class="clamped"></i>off the chart (over {{mul $d.Target 6}} s)</span></p></div>
 <div class="card"><h2>Difficulty (last {{len $d.Recent}})</h2>{{dchart $d.Recent}}</div>
 {{end}}

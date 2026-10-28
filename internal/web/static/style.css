@@ -28,7 +28,7 @@ header{position:sticky;top:0;z-index:20;background:#090d10d9;backdrop-filter:blu
 .logo:hover .original-qtc-mark{filter:drop-shadow(0 0 8px #85f3df55);transform:translateY(-1px)}
 .qtc-wordmark{display:flex;flex-direction:column;font:700 25px/1 var(--sans);letter-spacing:3.5px}
 .qtc-wordmark small{font:7px var(--mono);letter-spacing:2px;margin-top:7px;color:#9eb9bd}
-.net{font:500 9px/1 var(--mono);letter-spacing:1.6px;text-transform:uppercase;padding:6px 8px;border:1px solid #85f3df50;color:var(--green);white-space:nowrap}
+.net{font:500 9px/1 var(--mono);letter-spacing:1.6px;text-transform:uppercase;padding:6px 8px;border:1px solid #e0a24a70;color:var(--amber);white-space:nowrap}
 .net-test{border-color:#e0a24a70;color:var(--amber)}
 a.net{display:inline-block;transition:border-color .2s,background .2s}
 a.net:hover{border-color:currentColor;background:#ffffff0a}
@@ -126,7 +126,12 @@ main p>.btn+.btn{margin-left:10px}
 /* charts (inline SVG from the server) */
 .chart{width:100%;height:auto;display:block}
 .chart .bar{fill:#85f3df}
-.chart .bar.clamped{fill:var(--amber)}
+.chart .bar.over{fill:var(--amber)}
+.chart .bar.clamped{fill:#f6c67a}
+.chart-legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:10px 0 0;font:10px/1.6 var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.chart-legend span{display:inline-flex;align-items:center;gap:7px}
+.chart-legend i{width:8px;height:12px;flex-shrink:0}
+.chart-legend .ok{background:#85f3df}.chart-legend .over{background:var(--amber)}.chart-legend .clamped{background:#f6c67a}
 .chart .target{stroke:var(--amber);stroke-dasharray:4 3}
 .chart .lbl{font:10px var(--mono);fill:var(--muted)}
 .chart .lbl.end{text-anchor:end}
